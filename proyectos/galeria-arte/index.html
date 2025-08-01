@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Arte Moderna - Exposición Digital</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- GLightbox for Image Gallery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-palette"></i>
+            </div>
+            <div class="loading-text">Cargando Galería...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-palette me-2"></i>
+                <span>ArtGallery</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galería</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#artists">Artistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#exhibitions">Exposiciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-actions ms-3">
+                    <button class="btn btn-outline-light me-2" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-primary" id="virtualTourBtn">
+                        <i class="fas fa-vr-cardboard me-1"></i>
+                        Tour Virtual
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar obras, artistas, estilos..." id="searchInput">
+                <button class="search-close" id="searchClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2066&q=80')"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="container hero-content">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8">
+                    <div class="hero-text" data-aos="fade-up" data-aos-delay="300">
+                        <h1 class="hero-title">
+                            <span class="title-line">Descubre el</span>
+                            <span class="title-line highlight">Arte Contemporáneo</span>
+                            <span class="title-line">en su Máxima Expresión</span>
+                        </h1>
+                        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="500">
+                            Explora nuestra colección curada de obras maestras contemporáneas, 
+                            desde pinturas abstractas hasta instalaciones digitales innovadoras.
+                        </p>
+                        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="700">
+                            <a href="#gallery" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-images me-2"></i>
+                                Explorar Galería
+                            </a>
+                            <a href="#exhibitions" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-calendar me-2"></i>
+                                Ver Exposiciones
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="hero-stats" data-aos="fade-left" data-aos-delay="800">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="250">0</div>
+                            <div class="stat-label">Obras de Arte</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="45">0</div>
+                            <div class="stat-label">Artistas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="12">0</div>
+                            <div class="stat-label">Exposiciones</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hero Navigation -->
+        <div class="hero-navigation">
+            <button class="hero-nav-btn prev" id="heroPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="hero-nav-btn next" id="heroNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1000">
+            <div class="scroll-text">Desliza para explorar</div>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Artworks -->
+    <section class="featured-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Obras Destacadas
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Una selección especial de nuestras piezas más impresionantes
+                    </p>
+                </div>
+            </div>
+            
+            <div class="featured-carousel" data-aos="fade-up" data-aos-delay="400">
+                <div class="featured-track" id="featuredTrack">
+                    <div class="featured-item">
+                        <div class="artwork-card">
+                            <div class="artwork-image">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Obra 1">
+                                <div class="artwork-overlay">
+                                    <button class="btn btn-light btn-sm view-btn" data-artwork="1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-sm like-btn" data-artwork="1">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="artwork-info">
+                                <h4>Abstracción Moderna</h4>
+                                <p class="artist-name">María González</p>
+                                <p class="artwork-price">$2,500</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-item">
+                        <div class="artwork-card">
+                            <div class="artwork-image">
+                                <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Obra 2">
+                                <div class="artwork-overlay">
+                                    <button class="btn btn-light btn-sm view-btn" data-artwork="2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-sm like-btn" data-artwork="2">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="artwork-info">
+                                <h4>Expresión Urbana</h4>
+                                <p class="artist-name">Carlos Mendoza</p>
+                                <p class="artwork-price">$1,800</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-item">
+                        <div class="artwork-card">
+                            <div class="artwork-image">
+                                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Obra 3">
+                                <div class="artwork-overlay">
+                                    <button class="btn btn-light btn-sm view-btn" data-artwork="3">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-sm like-btn" data-artwork="3">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="artwork-info">
+                                <h4>Naturaleza Digital</h4>
+                                <p class="artist-name">Ana Ruiz</p>
+                                <p class="artwork-price">$3,200</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="featuredPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" id="featuredNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Gallery -->
+    <section id="gallery" class="gallery-section py-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Galería Principal
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Explora nuestra colección completa organizada por categorías
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Gallery Filters -->
+            <div class="gallery-filters" data-aos="fade-up" data-aos-delay="400">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="abstract">Abstracto</button>
+                    <button class="filter-btn" data-filter="portrait">Retratos</button>
+                    <button class="filter-btn" data-filter="landscape">Paisajes</button>
+                    <button class="filter-btn" data-filter="digital">Arte Digital</button>
+                    <button class="filter-btn" data-filter="sculpture">Esculturas</button>
+                </div>
+                
+                <div class="gallery-view-controls">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="masonry">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid" data-aos="fade-up" data-aos-delay="600">
+                <!-- Gallery items will be dynamically loaded -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-5" data-aos="fade-up">
+                <button class="btn btn-outline-primary btn-lg" id="loadMoreBtn">
+                    <i class="fas fa-plus me-2"></i>
+                    Cargar Más Obras
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="artists" class="artists-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Artistas Destacados
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Conoce a los talentosos creadores detrás de estas obras maestras
+                    </p>
+                </div>
+            </div>
+            
+            <div class="artists-grid">
+                <div class="artist-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="artist-image">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="María González">
+                        <div class="artist-overlay">
+                            <div class="artist-social">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="artist-info">
+                        <h4>María González</h4>
+                        <p class="artist-specialty">Arte Abstracto</p>
+                        <p class="artist-description">Especialista en técnicas mixtas y composiciones abstractas que exploran la relación entre color y emoción.</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-palette"></i> 23 Obras</span>
+                            <span><i class="fas fa-award"></i> 5 Premios</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="artist-image">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Carlos Mendoza">
+                        <div class="artist-overlay">
+                            <div class="artist-social">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="artist-info">
+                        <h4>Carlos Mendoza</h4>
+                        <p class="artist-specialty">Arte Urbano</p>
+                        <p class="artist-description">Artista urbano que combina técnicas tradicionales con elementos contemporáneos de la cultura callejera.</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-palette"></i> 18 Obras</span>
+                            <span><i class="fas fa-award"></i> 3 Premios</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="artist-image">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ana Ruiz">
+                        <div class="artist-overlay">
+                            <div class="artist-social">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="artist-info">
+                        <h4>Ana Ruiz</h4>
+                        <p class="artist-specialty">Arte Digital</p>
+                        <p class="artist-description">Pionera en arte digital que fusiona tecnología avanzada con conceptos artísticos tradicionales.</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-palette"></i> 31 Obras</span>
+                            <span><i class="fas fa-award"></i> 8 Premios</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exhibitions Section -->
+    <section id="exhibitions" class="exhibitions-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Exposiciones Actuales
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Descubre nuestras exposiciones temáticas y eventos especiales
+                    </p>
+                </div>
+            </div>
+            
+            <div class="exhibitions-timeline">
+                <div class="exhibition-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="exhibition-date">
+                        <div class="date-day">15</div>
+                        <div class="date-month">ENE</div>
+                    </div>
+                    <div class="exhibition-content">
+                        <div class="exhibition-image">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Exposición 1">
+                        </div>
+                        <div class="exhibition-info">
+                            <h4>Abstracciones Contemporáneas</h4>
+                            <p class="exhibition-duration">15 Enero - 28 Febrero 2024</p>
+                            <p class="exhibition-description">
+                                Una exploración profunda del arte abstracto contemporáneo, 
+                                presentando obras que desafían las percepciones tradicionales.
+                            </p>
+                            <div class="exhibition-details">
+                                <span><i class="fas fa-map-marker-alt"></i> Sala Principal</span>
+                                <span><i class="fas fa-users"></i> 15 Artistas</span>
+                                <span><i class="fas fa-images"></i> 45 Obras</span>
+                            </div>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="fas fa-ticket-alt me-2"></i>
+                                Reservar Entrada
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exhibition-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="exhibition-date">
+                        <div class="date-day">01</div>
+                        <div class="date-month">MAR</div>
+                    </div>
+                    <div class="exhibition-content">
+                        <div class="exhibition-image">
+                            <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Exposición 2">
+                        </div>
+                        <div class="exhibition-info">
+                            <h4>Revolución Digital</h4>
+                            <p class="exhibition-duration">1 Marzo - 15 Abril 2024</p>
+                            <p class="exhibition-description">
+                                Descubre cómo la tecnología está transformando el arte, 
+                                desde instalaciones interactivas hasta realidad virtual.
+                            </p>
+                            <div class="exhibition-details">
+                                <span><i class="fas fa-map-marker-alt"></i> Sala Digital</span>
+                                <span><i class="fas fa-users"></i> 8 Artistas</span>
+                                <span><i class="fas fa-images"></i> 25 Obras</span>
+                            </div>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="fas fa-ticket-alt me-2"></i>
+                                Reservar Entrada
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-content">
+                        <h2 class="section-title mb-4">
+                            Nuestra Misión Artística
+                        </h2>
+                        <p class="lead mb-4">
+                            Somos más que una galería; somos un puente entre artistas visionarios 
+                            y amantes del arte que buscan experiencias transformadoras.
+                        </p>
+                        <p class="mb-4">
+                            Desde nuestra fundación en 2018, hemos estado comprometidos con la 
+                            promoción del arte contemporáneo, ofreciendo una plataforma donde 
+                            la creatividad y la innovación se encuentran.
+                        </p>
+                        
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h5>Visión Curatorial</h5>
+                                    <p>Selección cuidadosa de obras que desafían y inspiran</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h5>Comunidad Artística</h5>
+                                    <p>Conectamos artistas emergentes con coleccionistas</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h5>Educación Artística</h5>
+                                    <p>Programas educativos y talleres especializados</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-gallery">
+                        <div class="gallery-mosaic">
+                            <div class="mosaic-item large">
+                                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Galería">
+                            </div>
+                            <div class="mosaic-item small">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Arte">
+                            </div>
+                            <div class="mosaic-item small">
+                                <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Exposición">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Contáctanos
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        ¿Tienes preguntas? Nos encantaría escucharte
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form-container" data-aos="fade-up" data-aos-delay="400">
+                        <form id="contactForm" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <label for="name">Nombre Completo</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <label for="email">Correo Electrónico</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" id="phone" name="phone">
+                                        <label for="phone">Teléfono</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <select class="form-control" id="subject" name="subject" required>
+                                            <option value="">Seleccionar tema</option>
+                                            <option value="general">Consulta General</option>
+                                            <option value="exhibition">Información de Exposiciones</option>
+                                            <option value="purchase">Compra de Obras</option>
+                                            <option value="artist">Información de Artistas</option>
+                                            <option value="collaboration">Colaboración</option>
+                                        </select>
+                                        <label for="subject">Tema de Consulta</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                    <label for="message">Mensaje</label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                    Enviar Mensaje
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-4 text-center" data-aos="fade-up" data-aos-delay="500">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h5>Ubicación</h5>
+                        <p>Av. Arte Contemporáneo 123<br>Ciudad de México, CDMX</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 text-center" data-aos="fade-up" data-aos-delay="600">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h5>Teléfono</h5>
+                        <p>+52 55 1234 5678<br>+52 55 8765 4321</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 text-center" data-aos="fade-up" data-aos-delay="700">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h5>Email</h5>
+                        <p>info@artgallery.com<br>ventas@artgallery.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <h4>
+                            <i class="fas fa-palette me-2"></i>
+                            ArtGallery
+                        </h4>
+                        <p class="footer-description">
+                            Descubre, explora y conecta con el arte contemporáneo 
+                            más innovador en nuestra galería digital.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Navegación</h5>
+                        <ul>
+                            <li><a href="#home">Inicio</a></li>
+                            <li><a href="#gallery">Galería</a></li>
+                            <li><a href="#artists">Artistas</a></li>
+                            <li><a href="#exhibitions">Exposiciones</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Servicios</h5>
+                        <ul>
+                            <li><a href="#">Compra de Arte</a></li>
+                            <li><a href="#">Asesoría</a></li>
+                            <li><a href="#">Valuaciones</a></li>
+                            <li><a href="#">Tours Virtuales</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-newsletter">
+                        <h5>Newsletter</h5>
+                        <p>Suscríbete para recibir las últimas noticias del mundo del arte</p>
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Tu email">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright">
+                            &copy; 2024 ArtGallery. Todos los derechos reservados.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="footer-bottom-links">
+                            <a href="#">Política de Privacidad</a>
+                            <a href="#">Términos de Uso</a>
+                            <a href="#">Cookies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Artwork Modal -->
+    <div class="modal fade" id="artworkModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="artworkModalTitle">Título de la Obra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img id="artworkModalImage" src="" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="artwork-details">
+                                <h6>Artista</h6>
+                                <p id="artworkModalArtist">Nombre del Artista</p>
+                                
+                                <h6>Técnica</h6>
+                                <p id="artworkModalTechnique">Técnica utilizada</p>
+                                
+                                <h6>Dimensiones</h6>
+                                <p id="artworkModalDimensions">Dimensiones</p>
+                                
+                                <h6>Año</h6>
+                                <p id="artworkModalYear">Año de creación</p>
+                                
+                                <h6>Precio</h6>
+                                <p id="artworkModalPrice" class="price">Precio</p>
+                                
+                                <div class="artwork-actions mt-4">
+                                    <button class="btn btn-primary btn-sm me-2">
+                                        <i class="fas fa-shopping-cart me-1"></i>
+                                        Comprar
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-heart me-1"></i>
+                                        Favorito
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- GLightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

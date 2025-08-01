@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game Pro - Juego de Memoria Interactivo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-brain fa-3x"></i>
+            </div>
+            <h2>Memory Game Pro</h2>
+            <div class="loading-spinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+            <p>Preparando tu experiencia de juego...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain me-2"></i>
+                <span class="brand-text">Memory Game Pro</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#game">Jugar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaderboard">Ranking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-actions ms-3">
+                    <button class="btn btn-outline-light btn-sm me-2" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="playNowBtn">
+                        <i class="fas fa-play me-1"></i> Jugar Ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="highlight">Desafía</span> tu
+                            <br>Memoria con
+                            <br><span class="gradient-text">Memory Game Pro</span>
+                        </h1>
+                        <p class="hero-description">
+                            Entrena tu cerebro con nuestro juego de memoria interactivo. 
+                            Múltiples niveles de dificultad, efectos visuales impresionantes 
+                            y un sistema de puntuación competitivo.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="10000">0</div>
+                                <div class="stat-label">Jugadores</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="50000">0</div>
+                                <div class="stat-label">Partidas</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="15">0</div>
+                                <div class="stat-label">Niveles</div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-lg me-3" id="startGameBtn">
+                                <i class="fas fa-play me-2"></i>
+                                Comenzar Juego
+                            </button>
+                            <button class="btn btn-outline-light btn-lg" id="watchDemoBtn">
+                                <i class="fas fa-video me-2"></i>
+                                Ver Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="hero-game-preview">
+                        <div class="preview-container">
+                            <div class="preview-card card-1">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="preview-card card-2">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="preview-card card-3">
+                                <i class="fas fa-diamond"></i>
+                            </div>
+                            <div class="preview-card card-4">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-effects">
+                            <div class="effect-circle effect-1"></div>
+                            <div class="effect-circle effect-2"></div>
+                            <div class="effect-circle effect-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Section -->
+    <section id="game" class="game-section py-5">
+        <div class="container">
+            <!-- Game Header -->
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos="fade-up">
+                    <h2 class="section-title">Área de Juego</h2>
+                    <p class="section-description">
+                        Selecciona tu nivel de dificultad y comienza a entrenar tu memoria
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Game Controls -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="game-controls" data-aos="fade-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="difficulty-selector">
+                                    <label class="form-label">Dificultad:</label>
+                                    <select class="form-select" id="difficultySelect">
+                                        <option value="easy">Fácil (4x3)</option>
+                                        <option value="medium" selected>Medio (4x4)</option>
+                                        <option value="hard">Difícil (6x4)</option>
+                                        <option value="expert">Experto (6x6)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="game-stats">
+                                    <div class="stat-card">
+                                        <div class="stat-icon">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-value" id="timeValue">00:00</div>
+                                            <div class="stat-label">Tiempo</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="stat-card">
+                                        <div class="stat-icon">
+                                            <i class="fas fa-mouse-pointer"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-value" id="movesValue">0</div>
+                                            <div class="stat-label">Movimientos</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="stat-card">
+                                        <div class="stat-icon">
+                                            <i class="fas fa-trophy"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-value" id="scoreValue">0</div>
+                                            <div class="stat-label">Puntuación</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="game-actions">
+                                    <button class="btn btn-success" id="newGameBtn">
+                                        <i class="fas fa-plus me-2"></i>
+                                        Nuevo Juego
+                                    </button>
+                                    <button class="btn btn-warning" id="pauseBtn">
+                                        <i class="fas fa-pause"></i>
+                                    </button>
+                                    <button class="btn btn-info" id="hintBtn">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Board -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="game-board-container" data-aos="zoom-in">
+                        <div id="gameBoard" class="game-board">
+                            <!-- Game cards will be generated here -->
+                        </div>
+                        
+                        <div class="game-overlay" id="gameOverlay">
+                            <div class="overlay-content">
+                                <div class="overlay-icon">
+                                    <i class="fas fa-pause fa-3x"></i>
+                                </div>
+                                <h3>Juego Pausado</h3>
+                                <button class="btn btn-primary" id="resumeBtn">
+                                    <i class="fas fa-play me-2"></i>
+                                    Continuar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos="fade-up">
+                    <h2 class="section-title">Tabla de Líderes</h2>
+                    <p class="section-description">
+                        Los mejores jugadores de Memory Game Pro
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="leaderboard-container" data-aos="fade-up">
+                        <div class="leaderboard-header">
+                            <div class="row">
+                                <div class="col-2 text-center">
+                                    <strong>Posición</strong>
+                                </div>
+                                <div class="col-4">
+                                    <strong>Jugador</strong>
+                                </div>
+                                <div class="col-2 text-center">
+                                    <strong>Nivel</strong>
+                                </div>
+                                <div class="col-2 text-center">
+                                    <strong>Tiempo</strong>
+                                </div>
+                                <div class="col-2 text-center">
+                                    <strong>Puntos</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="leaderboard-body" id="leaderboardBody">
+                            <!-- Leaderboard entries will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-content">
+                        <h2 class="section-title">Acerca del Juego</h2>
+                        <p class="section-description">
+                            Memory Game Pro es más que un simple juego de memoria. Es una experiencia 
+                            interactiva diseñada para entrenar y mejorar tus habilidades cognitivas 
+                            mientras te diviertes.
+                        </p>
+                        
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Entrena tu Cerebro</h4>
+                                    <p>Mejora tu memoria, concentración y agilidad mental con ejercicios divertidos.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Progreso Medible</h4>
+                                    <p>Sigue tu evolución con estadísticas detalladas y rankings competitivos.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Juega en Cualquier Lugar</h4>
+                                    <p>Diseño responsive que se adapta perfectamente a todos tus dispositivos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-visual">
+                        <div class="visual-container">
+                            <div class="brain-animation">
+                                <div class="brain-part part-1"></div>
+                                <div class="brain-part part-2"></div>
+                                <div class="brain-part part-3"></div>
+                                <div class="brain-part part-4"></div>
+                            </div>
+                            
+                            <div class="stats-floating">
+                                <div class="floating-stat stat-1">
+                                    <i class="fas fa-zap"></i>
+                                    <span>+25% Memoria</span>
+                                </div>
+                                <div class="floating-stat stat-2">
+                                    <i class="fas fa-target"></i>
+                                    <span>+40% Concentración</span>
+                                </div>
+                                <div class="floating-stat stat-3">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>+60% Agilidad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos="fade-up">
+                    <h2 class="section-title">Contacto</h2>
+                    <p class="section-description">
+                        ¿Tienes sugerencias o necesitas ayuda? ¡Nos encantaría escucharte!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form-container" data-aos="fade-up">
+                        <form id="contactForm" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="contactName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="contactName" name="name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="contactEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="contactEmail" name="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label for="contactSubject" class="form-label">Asunto</label>
+                                    <select class="form-select" id="contactSubject" name="subject" required>
+                                        <option value="">Selecciona un asunto</option>
+                                        <option value="suggestion">Sugerencia</option>
+                                        <option value="bug">Reporte de Error</option>
+                                        <option value="feature">Nueva Funcionalidad</option>
+                                        <option value="general">Consulta General</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-group">
+                                    <label for="contactMessage" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="contactMessage" name="message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                    Enviar Mensaje
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <h3>
+                            <i class="fas fa-brain me-2"></i>
+                            Memory Game Pro
+                        </h3>
+                        <p>
+                            El juego de memoria más avanzado y divertido. 
+                            Entrena tu cerebro mientras te diviertes.
+                        </p>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Juego</h5>
+                        <ul>
+                            <li><a href="#game">Jugar Ahora</a></li>
+                            <li><a href="#leaderboard">Ranking</a></li>
+                            <li><a href="#">Tutoriales</a></li>
+                            <li><a href="#">Logros</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Soporte</h5>
+                        <ul>
+                            <li><a href="#">Ayuda</a></li>
+                            <li><a href="#contact">Contacto</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Reportar Bug</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-newsletter">
+                        <h5>Newsletter</h5>
+                        <p>Recibe actualizaciones sobre nuevas funcionalidades y eventos.</p>
+                        
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Tu email" required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="footer-divider">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="footer-copyright">
+                        &copy; 2024 Memory Game Pro. Todos los derechos reservados.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-legal">
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Victory Modal -->
+    <div class="modal fade" id="victoryModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="victory-animation">
+                        <i class="fas fa-trophy fa-4x text-warning mb-3"></i>
+                    </div>
+                    <h3 class="mb-3">¡Felicitaciones!</h3>
+                    <p class="mb-4">Has completado el juego exitosamente</p>
+                    
+                    <div class="victory-stats">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="victory-stat">
+                                    <div class="stat-value" id="victoryTime">02:45</div>
+                                    <div class="stat-label">Tiempo</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="victory-stat">
+                                    <div class="stat-value" id="victoryMoves">24</div>
+                                    <div class="stat-label">Movimientos</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="victory-stat">
+                                    <div class="stat-value" id="victoryScore">1250</div>
+                                    <div class="stat-label">Puntos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="victory-actions mt-4">
+                        <button class="btn btn-primary me-2" id="playAgainBtn">
+                            <i class="fas fa-redo me-2"></i>
+                            Jugar de Nuevo
+                        </button>
+                        <button class="btn btn-outline-primary" id="shareScoreBtn">
+                            <i class="fas fa-share me-2"></i>
+                            Compartir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
